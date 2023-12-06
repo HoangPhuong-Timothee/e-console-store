@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                   ],
                 )),
                 SizedBox(height: 10),
-                SignUpForm(),
+                SignInForm(),
                 SizedBox(height: 20),
                 NoAccountText(),
               ],
