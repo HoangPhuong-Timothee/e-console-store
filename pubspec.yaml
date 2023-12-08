@@ -40,6 +40,10 @@ dependencies:
   intl: ^0.17.0
   email_otp: ^2.1.1
   email_auth: ^1.0.0
+  json_annotation: ^4.4.0
+  iconsax: ^0.0.8
+  uuid: ^4.2.1
+  sticky_float_button: ^0.1.0
 
 dev_dependencies:
   flutter_test:
