@@ -20,8 +20,8 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        width: 160,
-        padding: const EdgeInsets.all(defaultPadding / 2),
+        width: 154,
+        padding: const EdgeInsets.all(defaultPadding / 3),
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
@@ -38,22 +38,23 @@ class ProductCard extends StatelessWidget {
               ),
               child: Image.network(
                 image,
-                height: 120,
+                height: 110,
               ),
             ),
-            // const SizedBox(height: defaultPadding / 2),
+            SizedBox(height: defaultPadding / 2),
             Expanded(
               child: Text(
                 title,
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontSize: 13),
                 maxLines: 1,
               ),
             ),
             Expanded(
-                child: Text(
-              "\$" + price.toString(),
-              style: const TextStyle(color: primaryColor),
-            ))
+              child: Text(
+                "\$" + price.toString(),
+                style: TextStyle(color: primaryColor, fontSize: 13),
+              ),
+            )
           ],
         ),
       ),

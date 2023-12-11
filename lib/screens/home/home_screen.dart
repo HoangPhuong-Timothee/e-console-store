@@ -11,7 +11,6 @@ import 'package:e_console_store/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:sticky_float_button/sticky_float_button.dart';
 // import 'package:firebase_auth/firebase_auth.dart'; //backend!!!
 
 class HomeScreen extends StatefulWidget {
@@ -84,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => SearchScreen(
-                                    search_name: searchController.text),
+                                    searchName: searchController.text),
                               ));
                         }),
                     suffixIcon: IconButton(
