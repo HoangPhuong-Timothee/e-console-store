@@ -1,4 +1,5 @@
 import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/category.dart';
 import 'package:e_console_store/screens/product/disc_screen.dart';
 import 'package:e_console_store/screens/product/playstation_screen.dart';
 import 'package:e_console_store/screens/product/switch.screen.dart';
