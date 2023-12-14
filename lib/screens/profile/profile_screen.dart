@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart'; TODO: backend!!!
-// import 'package:firebase_auth/firebase_auth.dart' as auth;
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:gamestation/models/users.dart';
-// import 'package:gamestation/models/users_model.dart';
-import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:e_console_store/models/users.dart';
+import 'package:e_console_store/models/users_model.dart';
 import 'package:e_console_store/constants/constants.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:e_console_store/screens/home/home_screen.dart';
 import 'package:e_console_store/screens/profile/change_password_screen.dart';
-import 'package:e_console_store/screens/sign_in/sign_in_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'components/alert_dialog.dart';
@@ -66,7 +61,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
               )
             ],
           )),
-          // logic here
+          FutureBuilder<User>(
+            future:
+                Users.getUserInst(auth.FirebaseAuth.instance.currentUser!.uid),
+            builder: (context, snapshot) {
+              final User? examQuestions = snapshot.data;
+
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Center(child: CircularProgressIndicator());
+                default:
+                  if (snapshot.hasError)
+                    return Center(child: Text(snapshot.error.toString()));
+                  else if (examQuestions != null)
+                    return builduser(examQuestions);
+                  else
+                    return Text("null");
+              }
+            },
+          ),
           SizedBox(height: 20),
           Column(
             children: [
@@ -95,7 +108,50 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child:
                             Text('Save', style: TextStyle(color: Colors.black)),
                         onPressed: () => {
-                          //logic here
+                          if (nameHolder.text != "")
+                            {
+                              FirebaseFirestore.instance
+                                  .collection("users")
+                                  .doc(auth
+                                      .FirebaseAuth.instance.currentUser!.uid)
+                                  .update({"fullname": nameHolder.text}).then(
+                                      (value) => print(
+                                          "DocumentSnapshot successfully updated!"),
+                                      onError: (e) =>
+                                          print("Error updating document $e")),
+                              Fluttertoast.showToast(
+                                  msg: "Full name has changed "),
+                            },
+                          if (addressHolder.text != "")
+                            {
+                              FirebaseFirestore.instance
+                                  .collection("users")
+                                  .doc(auth
+                                      .FirebaseAuth.instance.currentUser!.uid)
+                                  .update({"address": addressHolder.text}).then(
+                                      (value) => print(
+                                          "DocumentSnapshot successfully updated!"),
+                                      onError: (e) =>
+                                          print("Error updating document $e")),
+                              Fluttertoast.showToast(
+                                  msg: "Address has changed "),
+                            },
+                          if (phonenumberHolder.text != "")
+                            {
+                              FirebaseFirestore.instance
+                                  .collection("users")
+                                  .doc(auth
+                                      .FirebaseAuth.instance.currentUser!.uid)
+                                  .update({
+                                "phonenumber": phonenumberHolder.text
+                              }).then(
+                                      (value) => print(
+                                          "DocumentSnapshot successfully updated!"),
+                                      onError: (e) =>
+                                          print("Error updating document $e")),
+                              Fluttertoast.showToast(
+                                  msg: "Phone Number has changed "),
+                            }
                         },
                       ),
                     ),

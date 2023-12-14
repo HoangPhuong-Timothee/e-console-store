@@ -1,5 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.e_console_store">
+   <application
         android:label="e_console_store"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:e_console_store/components/no_account_text.dart';
-import 'package:e_console_store/components/social_card.dart';
-import 'package:e_console_store/constants/constants.dart';
 import 'form.dart';
 
 class Body extends StatelessWidget {
@@ -25,7 +23,7 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Sign in with your email and password  \nor continue with social media",
+                  "Sign in with your email and password",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 20),

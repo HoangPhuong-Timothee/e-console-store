@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:e_console_store/components/keyboard.dart';
 import 'package:e_console_store/components/default_button.dart';
-import 'package:e_console_store/constants/constants.dart';
-// import 'package:firebase_auth/firebase_auth.dart';// TODO: backend!!!
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Body extends StatelessWidget {
@@ -49,7 +47,7 @@ class ChangePasswordForm extends StatefulWidget {
 class _ChangePasswordFormState extends State<ChangePasswordForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = new TextEditingController();
-  // final auth = FirebaseAuth.instance; TODO: backend!!!
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -62,7 +60,11 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
           DefaultButton(
             text: "Send to my email",
             press: () {
-              //logic here
+              auth.sendPasswordResetEmail(
+                  email: auth.currentUser!.email.toString());
+              Fluttertoast.showToast(
+                  msg: "Plase check your email for new password");
+              Navigator.of(context).pop();
             },
           ),
         ],

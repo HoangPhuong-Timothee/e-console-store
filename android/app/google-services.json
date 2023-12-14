@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953774855858",
+    "project_id": "e-console-store",
+    "storage_bucket": "e-console-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953774855858:android:0ed9f4ab7e77bc9e459bab",
+        "android_client_info": {
+          "package_name": "com.example.e_console_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiRR853Z33Om1s5ndHgHI6q0r1CFZaCP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

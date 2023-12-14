@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:e_console_store/components/social_card.dart';
 import 'package:e_console_store/components/have_account_text.dart';
 import 'package:e_console_store/constants/constants.dart';
 import 'form.dart';
@@ -13,20 +12,20 @@ class Body extends StatelessWidget {
       child: SizedBox(
         width: double.infinity,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text("Register Account", style: headingStyle),
-                Text(
-                  "Complete your details or continue \nwith social media",
+                const Text(
+                  "Complete your details to register",
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 10),
-                SignUpForm(),
-                SizedBox(height: 20),
-                HaveAccountText(),
+                const SizedBox(height: 10),
+                const SignUpForm(),
+                const SizedBox(height: 20),
+                const HaveAccountText(),
               ],
             ),
           ),

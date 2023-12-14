@@ -1,16 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:e_console_store/components/custom_surffix_icon.dart';
-import 'package:e_console_store/components/default_button.dart';
 import 'package:e_console_store/screens/home/home_screen.dart';
-import 'package:intl/intl.dart';
-import '../../../constants/constants.dart';
-// import '../../../controllers/firebase.dart'; //TODO: doing backend!!!
-// import 'package:firebase_auth/firebase_auth.dart'; //TODO: doing backend!!!
-// import 'package:cloud_firestore/cloud_firestore.dart';//TODO: doing backend!!!
 import 'package:flutter/material.dart';
+import '../../../constants/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_console_store/models/user_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-// import 'package:gamestation/models/user_model.dart';//TODO: doing backend!!!
-import 'package:email_auth/email_auth.dart';
 import 'package:email_otp/email_otp.dart';
 
 class SignUpForm extends StatefulWidget {
@@ -21,17 +15,17 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  // final _auth = FirebaseAuth.instance; TODO: backend auth!!!
+  final _auth = FirebaseAuth.instance;
   String? errorMessage;
   EmailOTP myauth = EmailOTP();
   final _formKey = GlobalKey<FormState>();
-  final fullNameEditingController = new TextEditingController();
-  final phoneNumberEditingController = new TextEditingController();
-  final emailEditingController = new TextEditingController();
-  final otpEditingController = new TextEditingController();
-  final addressEditingController = new TextEditingController();
-  final passwordEditingController = new TextEditingController();
-  final confirmPasswordEditingController = new TextEditingController();
+  final fullNameEditingController = TextEditingController();
+  final phoneNumberEditingController = TextEditingController();
+  final emailEditingController = TextEditingController();
+  final otpEditingController = TextEditingController();
+  final addressEditingController = TextEditingController();
+  final passwordEditingController = TextEditingController();
+  final confirmPasswordEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +48,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.account_circle),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.account_circle),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Full Name",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -77,8 +71,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.phone),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.phone),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Phone Number",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -100,8 +94,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.location_city_outlined),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.location_city_outlined),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Address",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -129,14 +123,14 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.mail),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.mail),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           suffixIcon: GestureDetector(
             onTap: () async {
               //sendOTP();
               myauth.setConfig(
-                  appEmail: "manhtan12327@gmail.com",
-                  appName: "GameStation OTP",
+                  appEmail: "19522059@gm.uit.edu.vn",
+                  appName: "eConsoleStore OTP",
                   userEmail: emailEditingController.text,
                   otpLength: 6,
                   otpType: OTPType.digitsOnly);
@@ -152,8 +146,8 @@ class _SignUpFormState extends State<SignUpForm> {
               }
             },
             child: Container(
-                padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                child: Text('Send OTP')),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                child: const Text('Send OTP')),
           ),
           hintText: "Email",
           border: OutlineInputBorder(
@@ -176,8 +170,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.verified_outlined),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.verified_outlined),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "OTP",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -190,7 +184,7 @@ class _SignUpFormState extends State<SignUpForm> {
         controller: passwordEditingController,
         obscureText: true,
         validator: (value) {
-          RegExp regex = new RegExp(r'^.{6,}$');
+          RegExp regex = RegExp(r'^.{6,}$');
           if (value!.isEmpty) {
             return ("Password is required for login");
           }
@@ -203,8 +197,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.next,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.vpn_key),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.vpn_key),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Password",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -228,8 +222,8 @@ class _SignUpFormState extends State<SignUpForm> {
         },
         textInputAction: TextInputAction.done,
         decoration: InputDecoration(
-          prefixIcon: Icon(Icons.vpn_key),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          prefixIcon: const Icon(Icons.vpn_key),
+          contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           hintText: "Confirm Password",
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -242,12 +236,12 @@ class _SignUpFormState extends State<SignUpForm> {
       borderRadius: BorderRadius.circular(30),
       color: primaryColor,
       child: MaterialButton(
-          padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+          padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
             signUp(emailEditingController.text, passwordEditingController.text);
           },
-          child: Text(
+          child: const Text(
             "SignUp",
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -260,29 +254,89 @@ class _SignUpFormState extends State<SignUpForm> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           fullNameField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           phoneNumberField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           emailField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           otpNumberField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           addressField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           passwordField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           confirmPasswordField,
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           signUpButton,
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
         ],
       ),
     );
   }
 
   void signUp(String email, String password) async {
-    //logic here
+    if (_formKey.currentState!.validate() &&
+        await myauth.verifyOTP(otp: otpEditingController.text) == true) {
+      try {
+        await _auth
+            .createUserWithEmailAndPassword(email: email, password: password)
+            .then((value) => {postDetailsToFirestore()})
+            .catchError((e) {
+          Fluttertoast.showToast(msg: e!.message);
+        });
+      } on FirebaseAuthException catch (error) {
+        switch (error.code) {
+          case "invalid-email":
+            errorMessage = "Your email address appears to be malformed.";
+            break;
+          case "wrong-password":
+            errorMessage = "Your password is wrong.";
+            break;
+          case "user-not-found":
+            errorMessage = "User with this email doesn't exist.";
+            break;
+          case "user-disabled":
+            errorMessage = "User with this email has been disabled.";
+            break;
+          case "too-many-requests":
+            errorMessage = "Too many requests";
+            break;
+          case "operation-not-allowed":
+            errorMessage = "Signing in with Email and Password is not enabled.";
+            break;
+          default:
+            errorMessage = "An undefined Error happened.";
+        }
+        Fluttertoast.showToast(msg: errorMessage!);
+        print(error.code);
+      }
+    }
+  }
+
+  postDetailsToFirestore() async {
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+    User? user = _auth.currentUser;
+
+    UserModel userModel = UserModel();
+    userModel.email = user!.email;
+    userModel.uid = user.uid;
+    userModel.fullname = fullNameEditingController.text;
+    userModel.phonenumber = phoneNumberEditingController.text;
+    userModel.address = addressEditingController.text;
+    userModel.favoritelist = [];
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+
+    Fluttertoast.showToast(msg: "Account created successfully ✓");
+
+    Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+        (route) => false);
   }
 }

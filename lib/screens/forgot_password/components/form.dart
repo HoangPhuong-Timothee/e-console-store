@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:e_console_store/components/custom_surffix_icon.dart';
 import 'package:e_console_store/components/default_button.dart';
-import 'package:e_console_store/components/form_error.dart';
 import 'package:e_console_store/components/no_account_text.dart';
-// import 'package:firebase_auth/firebase_auth.dart'; TODO: backend!!!
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:e_console_store/constants/constants.dart';
 
 class ForgotPassForm extends StatefulWidget {
   const ForgotPassForm({super.key});
@@ -17,6 +14,7 @@ class ForgotPassForm extends StatefulWidget {
 class _ForgotPassFormState extends State<ForgotPassForm> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = new TextEditingController();
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,12 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
           DefaultButton(
             text: "Continue",
             press: () {
-              //logic here
+              if (_formKey.currentState!.validate()) {
+                auth.sendPasswordResetEmail(email: emailController.text);
+                Fluttertoast.showToast(
+                    msg: "Plase check your email for changing new password");
+                Navigator.of(context).pop();
+              }
             },
           ),
           SizedBox(height: 10),
