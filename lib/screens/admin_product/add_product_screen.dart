@@ -1,5 +1,5 @@
+import 'package:e_console_store/constants/constants.dart';
 import 'package:flutter/material.dart';
-import '../../../constants.dart';
 
 import 'components/add_product_form.dart';
 import 'product_list_screen.dart';

@@ -1,9 +1,9 @@
-import 'package:gamestation/models/products.dart';
-import 'package:gamestation/models/product_model.dart';
-import 'package:gamestation/screens/admin_home/home_screen.dart';
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/product_model.dart';
+import 'package:e_console_store/models/products.dart';
+import 'package:e_console_store/screens/admin_home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gamestation/constants.dart';
 import 'components/body.dart';
 import 'add_product_screen.dart';
 import 'remove_product_screen.dart';
@@ -25,7 +25,7 @@ class _ProductScreen extends State<ProductScreen> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomeScreenad(),
+                    builder: (context) => AdminHomeScreen(),
                   ));
             },
             icon: Icon(

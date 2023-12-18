@@ -1,7 +1,6 @@
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/products.dart';
 import 'package:flutter/material.dart';
-import 'package:gamestation/models/products.dart';
-
-import '../../../constants.dart';
 
 class Body extends StatelessWidget {
   const Body({

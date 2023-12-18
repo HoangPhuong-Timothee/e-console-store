@@ -1,11 +1,8 @@
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:gamestation/models/products.dart';
-import 'package:gamestation/models/products_model.dart';
-import 'package:gamestation/models/product_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
-import '../../../constants.dart';
 
 class UpdateProductForm extends StatefulWidget {
   @override

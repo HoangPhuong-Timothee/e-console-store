@@ -74,7 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   if (snapshot.hasError)
                     return Center(child: Text(snapshot.error.toString()));
                   else if (examQuestions != null)
-                    return builduser(examQuestions);
+                    return Text("Something =D!!!");
                   else
                     return Text("null");
               }

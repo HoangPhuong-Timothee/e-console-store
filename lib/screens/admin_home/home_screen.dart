@@ -1,25 +1,26 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:gamestation/models/users.dart';
-import 'package:gamestation/models/users_model.dart';
+import 'package:e_console_store/models/users.dart';
+import 'package:e_console_store/models/users_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gamestation/constants.dart';
-import 'package:gamestation/screens/admin_customer/customer_list_screen.dart';
-import 'package:gamestation/screens/admin_product/product_list_screen.dart';
-import 'package:gamestation/screens/chat/chat_screen.dart';
-import 'package:gamestation/screens/admin_revenue.dart/revenue_list_screen.dart';
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/screens/admin_customer/customer_list_screen.dart';
+import 'package:e_console_store/screens/admin_product/product_list_screen.dart';
+import 'package:e_console_store/screens/chat/chat_admin.dart';
+import 'package:e_console_store/screens/admin_revenue/revenue_list_screen.dart';
 import 'components/alert_dialog.dart';
 
-class HomeScreenad extends StatefulWidget {
+class AdminHomeScreen extends StatefulWidget {
+  const AdminHomeScreen({super.key});
+
   @override
-  _HomeScreenadState createState() => _HomeScreenadState();
+  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
 }
 
-class _HomeScreenadState extends State<HomeScreenad> {
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   bool tappedYes = false;
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -126,7 +127,7 @@ class _HomeScreenadState extends State<HomeScreenad> {
                         onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => adminMessagesScreen(),
+                              builder: (context) => AdminMessageScreen(),
                             )),
                         child: Card(
                           color: Color(0xFFF8BBD0),

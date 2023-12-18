@@ -1,4 +1,5 @@
 import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/users.dart';
 import 'package:e_console_store/screens/cart/cart_screen.dart';
 import 'package:e_console_store/screens/chat/chat_client.dart';
 import 'package:e_console_store/screens/favorite/favorite_screen.dart';
@@ -8,10 +9,10 @@ import 'package:e_console_store/screens/home/components/new_arriaval_products.da
 import 'package:e_console_store/screens/home/components/popular_products.dart';
 import 'package:e_console_store/screens/profile/profile_screen.dart';
 import 'package:e_console_store/screens/search/search_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-// import 'package:firebase_auth/firebase_auth.dart'; //backend!!!
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -30,7 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
     ProfileScreen()
   ];
   String uid = '';
-  //logic here backend
+  @override
+  void initState() {
+    User? user = FirebaseAuth.instance.currentUser;
+    final userid = user?.uid.toString();
+    uid = userid!;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget _bottomTab() {

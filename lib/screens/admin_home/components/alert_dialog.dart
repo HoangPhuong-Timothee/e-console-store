@@ -1,6 +1,6 @@
+import 'package:e_console_store/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:gamestation/constants.dart';
-import 'package:gamestation/screens/sign_in/sign_in_screen.dart';
+import 'package:e_console_store/screens/sign_in/sign_in_screen.dart';
 
 enum DialogsAction { yes, cancel }
 

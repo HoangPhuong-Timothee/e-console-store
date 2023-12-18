@@ -1,10 +1,10 @@
 import 'components/body.dart';
-import 'package:gamestation/screens/admin_home/home_screen.dart';
-import 'package:gamestation/models/users.dart';
-import 'package:gamestation/models/users_model.dart';
+import 'package:e_console_store/screens/admin_home/home_screen.dart';
+import 'package:e_console_store/models/users.dart';
+import 'package:e_console_store/models/users_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gamestation/constants.dart';
+import 'package:e_console_store/constants/constants.dart';
 
 class CustomerScreen extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _CustomerScreen extends State<CustomerScreen> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => HomeScreenad(),
+                  builder: (context) => AdminHomeScreen(),
                 ));
           },
           icon: Icon(
