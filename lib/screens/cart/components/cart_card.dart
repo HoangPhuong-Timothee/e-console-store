@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:gamestation/models/cart_model.dart'; TODO:backend!!!
-// import 'package:gamestation/models/carts.dart';
 import 'package:e_console_store/constants/constants.dart';
 
 class CartCard extends StatelessWidget {
@@ -14,7 +12,6 @@ class CartCard extends StatelessWidget {
   final String image, title;
   final double price;
   final int amount;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +54,7 @@ class CartCard extends StatelessWidget {
                   children: [
                     TextSpan(
                         text: " x${amount}",
-                        style: Theme.of(context).textTheme.bodyLarge),
+                        style: Theme.of(context).textTheme.bodyText1),
                   ],
                 ),
               )
