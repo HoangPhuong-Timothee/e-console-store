@@ -1,9 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/models/carts_model.dart';
 import 'package:e_console_store/models/products.dart';
 import 'package:e_console_store/models/users_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key, required this.product}) : super(key: key);
@@ -167,5 +171,30 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 
-  void add() async {}
+  void add() async {
+    try {
+      postDetailsToFirestore();
+    } on FirebaseException catch (error) {}
+  }
+
+  postDetailsToFirestore() async {
+    // calling our firestore
+    // calling our user model
+    // sedning these values
+
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+    CartModel cartModel = CartModel();
+
+    // writing all the values
+    cartModel.productid = widget.product.id;
+    cartModel.userid = auth.FirebaseAuth.instance.currentUser!.uid;
+    cartModel.amount = amount;
+
+    await firebaseFirestore
+        .collection("cart")
+        .doc(auth.FirebaseAuth.instance.currentUser!.uid + widget.product.id)
+        .set(cartModel.toMap());
+    Fluttertoast.showToast(msg: "Add to cart successfully ✓");
+  }
 }
