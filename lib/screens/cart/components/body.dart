@@ -185,7 +185,7 @@ class _BodyState extends State<Body> {
     billModel.total = total;
     billModel.detail = detail;
     await firebaseFirestore.collection("bills").doc().set(billModel.toMap());
-    Fluttertoast.showToast(msg: "Bill created successfully :) ");
+    Fluttertoast.showToast(msg: "Checked out successfully!");
     return list.map((e) => e.id).toList();
   }
 

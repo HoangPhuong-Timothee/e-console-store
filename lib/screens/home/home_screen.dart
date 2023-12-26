@@ -1,27 +1,24 @@
-import 'package:e_console_store/constants/constants.dart';
-import 'package:e_console_store/models/users.dart';
-import 'package:e_console_store/screens/cart/cart_screen.dart';
-import 'package:e_console_store/screens/chat/chat_client.dart';
 import 'package:e_console_store/screens/favorite/favorite_screen.dart';
-import 'package:e_console_store/screens/home/components/categories.dart';
-import 'package:e_console_store/screens/home/components/controller_and_accessory.dart';
 import 'package:e_console_store/screens/home/components/new_arriaval_products.dart';
-import 'package:e_console_store/screens/home/components/popular_products.dart';
 import 'package:e_console_store/screens/profile/profile_screen.dart';
 import 'package:e_console_store/screens/search/search_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/screens/cart/cart_screen.dart';
+import 'package:e_console_store/screens/chat/chat_client.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iconsax/iconsax.dart';
+import 'components/categories.dart';
+import 'components/popular_products.dart';
+import 'components/controller_and_accessory.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  _HomeScreen createState() => _HomeScreen();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreen extends State<HomeScreen> {
   int _index = 0;
   final searchController = new TextEditingController();
   List<Widget> tabPages = [
@@ -129,7 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.bottomRight,
               margin: EdgeInsets.only(right: 12, bottom: 12),
               child: GestureDetector(
-                onTap: () {}, //float button để thêm tính năng gì đó
+                onTap: () {
+                  //something!!!
+                },
                 child: Container(
                   height: 50,
                   width: 50,
@@ -166,8 +165,6 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class Home extends StatelessWidget {
-  const Home({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
