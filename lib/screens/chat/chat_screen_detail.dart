@@ -1,141 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
-import 'package:e_console_store/constants/constants.dart';
-import 'package:e_console_store/models/content_message.dart';
-import 'package:e_console_store/models/message_model.dart';
-import 'package:e_console_store/models/user_model.dart';
-import 'package:iconsax/iconsax.dart';
 
 class MessageDetailScreen extends StatefulWidget {
-  String uid;
-  String uid2;
-  String messagesId;
-  MessageDetailScreen(required,
-      {Key? key,
-      required this.uid,
-      required this.uid2,
-      required this.messagesId})
-      : super(key: key);
+  const MessageDetailScreen({super.key});
 
   @override
-  State<MessageDetailScreen> createState() =>
-      _MessageDetailScreenState(uid, uid2, this.messagesId);
+  State<MessageDetailScreen> createState() => _MessageDetailScreenState();
 }
 
 class _MessageDetailScreenState extends State<MessageDetailScreen> {
-  String uid = '';
-  String uid2 = '';
-  String messagesId = "";
-  _MessageDetailScreenState(this.uid, this.uid2, this.messagesId);
-  late Content content = Content(
-      contentId: '',
-      userId: '',
-      messageId: '',
-      message: '',
-      createAt: '',
-      timeSendDetail: '');
-  UserModel user = UserModel();
-  TextEditingController messageController = TextEditingController();
-  GlobalKey<FormState> messageFormKey = GlobalKey<FormState>();
-  String message = '';
-
-  Future getUserDetail() async {
-    FirebaseFirestore.instance
-        .collection("users")
-        .where("id", isEqualTo: uid)
-        .snapshots()
-        .listen((value) {
-      setState(() {
-        user = UserModel.fromMap(value.docs.first);
-        print(user.fullname);
-      });
-    });
-  }
-
-  late DateTime date = DateTime.now();
-  Future sendMessage() async {
-    if (messageController.text.isNotEmpty) {
-      FirebaseFirestore.instance.collection("contents").add({
-        'content': messageController.text,
-        'sendBy': auth.FirebaseAuth.instance.currentUser!.uid,
-        'messageId': messagesId,
-        'timeSend': '',
-        'timeSendDetail': "$date"
-      }).then((value) {
-        FirebaseFirestore.instance
-            .collection("messages")
-            .doc(messagesId)
-            .update({
-          'contentList': FieldValue.arrayUnion([value.id]),
-        });
-        FirebaseFirestore.instance.collection("contents").doc(value.id).update({
-          'contentId': value.id,
-        });
-      });
-      FirebaseFirestore.instance.collection("messages").doc(messagesId).update({
-        'lastMessage': messageController.text,
-        'lastTimeSend': "",
-      });
-    }
-  }
-
-  late List contentList;
-  late List<Content> chatting = [];
-
-  Future getMessage2() async {
-    FirebaseFirestore.instance
-        .collection("messages")
-        .doc(messagesId)
-        .snapshots()
-        .listen((value1) {
-      FirebaseFirestore.instance
-          .collection("contents")
-          .orderBy('timeSendDetail', descending: false)
-          .get()
-          .then((value2) {
-        setState(() {
-          chatting.clear();
-          contentList = value1.data()!["contentList"];
-          value2.docs.forEach((element) {
-            if (contentList.contains(element.data()['contentId'] as String)) {
-              chatting.add(Content.fromDocument(element.data()));
-            }
-          });
-        });
-      });
-    });
-  }
-
-  Message mes = Message(
-      contentList: [],
-      userId1: '',
-      userId2: '',
-      messageId: '',
-      lastTimeSend: '',
-      lastMessage: '',
-      name2: '',
-      name1: '');
-  Future getMessage() async {
-    FirebaseFirestore.instance
-        .collection("messages")
-        .where('messageId', isEqualTo: messagesId)
-        .snapshots()
-        .listen(
-      (value) {
-        mes = Message.fromDocument(value.docs.first.data());
-      },
-    );
-  }
-
-  void initState() {
-    super.initState();
-    getUserDetail();
-    getMessage();
-    getMessage2();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
