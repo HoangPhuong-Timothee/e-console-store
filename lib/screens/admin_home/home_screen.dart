@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:e_console_store/models/users.dart';
 import 'package:e_console_store/models/users_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:e_console_store/constants/constants.dart';

@@ -7,6 +7,9 @@ const Color barColor = Color(0xFFF5F5F5);
 const Color iconColor = Colors.black;
 const Color borderColor = Color(0xFFC4C4C4);
 
+//For chatbot screen
+String API_KEY = "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";
+
 //Style constant
 const double defaultPadding = 16.0;
 const double defaultBorderRadius = 12.0;
