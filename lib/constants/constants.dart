@@ -8,7 +8,7 @@ const Color iconColor = Colors.black;
 const Color borderColor = Color(0xFFC4C4C4);
 
 //For chatbot screen
-String API_KEY = "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";
+String API_KEY = <-enter your key here->;
 
 //Style constant
 const double defaultPadding = 16.0;
