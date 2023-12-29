@@ -1,25 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:e_console_store/models/message_model.dart';
-import 'package:e_console_store/screens/chat/chat_screen_detail.dart';
+import 'package:gamestation/models/messageModel.dart';
+import 'package:gamestation/screens/chat/chat_screen_detail.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
-class AdminMessageScreen extends StatefulWidget {
-  AdminMessageScreen({Key? key}) : super(key: key);
+class adminMessagesScreen extends StatefulWidget {
+  adminMessagesScreen({Key? key}) : super(key: key);
 
   @override
-  _AdminMessageScreenState createState() => _AdminMessageScreenState();
+  _adminMessagesScreenState createState() => _adminMessagesScreenState();
 }
 
-class _AdminMessageScreenState extends State<AdminMessageScreen> {
-  _AdminMessageScreenState();
+class _adminMessagesScreenState extends State<adminMessagesScreen> {
+
+  _adminMessagesScreenState();
+  
 
   String uid = auth.FirebaseAuth.instance.currentUser!.uid;
 
   String newMessageId = "";
   String messageId = '';
   List assignedMessage = [];
+
 
   late List<Message> messagesList = [];
   late List messagesIdList;
@@ -90,14 +94,14 @@ class _AdminMessageScreenState extends State<AdminMessageScreen> {
                               color: Colors.black,
                               fontWeight: FontWeight.w700),
                         ),
-                      ),
+                      ),    
                     ],
                   ),
                 ),
                 SizedBox(height: 20),
                 Container(
                     padding: EdgeInsets.only(left: 28, right: 28),
-                    height: 580 - 88,
+                    height: 580-88,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(36),
@@ -118,14 +122,13 @@ class _AdminMessageScreenState extends State<AdminMessageScreen> {
                               alignment: Alignment.center,
                               child: GestureDetector(
                                   onTap: () {
-                                    (auth.FirebaseAuth.instance.currentUser!
-                                                .uid ==
+                                    (auth.FirebaseAuth.instance.currentUser!.uid ==
                                             messagesList[index].userId2)
                                         ? Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  MessageDetailScreen(
+                                                  messageDetailScreen(
                                                       required,
                                                       uid:
                                                           messagesList[index]
@@ -141,7 +144,7 @@ class _AdminMessageScreenState extends State<AdminMessageScreen> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  MessageDetailScreen(
+                                                  messageDetailScreen(
                                                       required,
                                                       uid:
                                                           messagesList[index]
@@ -159,11 +162,10 @@ class _AdminMessageScreenState extends State<AdminMessageScreen> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      CircleAvatar(
-                                        radius: 30,
-                                        backgroundImage: AssetImage(
-                                            "assets/images/logo.png"),
-                                      ),
+                                       CircleAvatar(
+                                                  radius: 30,
+                                                  backgroundImage: AssetImage("assets/images/logo.png"),
+                                                ),
                                       SizedBox(width: 10),
                                       Container(
                                         alignment: Alignment.center,
@@ -180,11 +182,7 @@ class _AdminMessageScreenState extends State<AdminMessageScreen> {
                                                 Container(
                                                   width: 100,
                                                   child: Text(
-                                                    (auth
-                                                                .FirebaseAuth
-                                                                .instance
-                                                                .currentUser!
-                                                                .uid ==
+                                                    (auth.FirebaseAuth.instance.currentUser!.uid==
                                                             messagesList[index]
                                                                 .userId1)
                                                         ? messagesList[index]
