@@ -1,20 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:e_console_store/constants/constants.dart';
-import 'package:e_console_store/models/content_message.dart';
-import 'package:e_console_store/models/users.dart';
+import 'package:flutter/material.dart';
+import 'package:gamestation/constants.dart';
+import 'package:gamestation/models/contentMessage.dart';
+import 'package:gamestation/models/users.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 
-class ClientMessageScreen extends StatefulWidget {
-  ClientMessageScreen({Key? key}) : super(key: key);
+class messageClientScreen extends StatefulWidget {
+  messageClientScreen({Key? key}) : super(key: key);
 
   @override
-  _ClientMessageScreenState createState() => _ClientMessageScreenState();
+  _messageClientScreenState createState() => _messageClientScreenState();
 }
 
-class _ClientMessageScreenState extends State<ClientMessageScreen> {
+class _messageClientScreenState extends State<messageClientScreen> {
   String uid = auth.FirebaseAuth.instance.currentUser!.uid;
   String uid2 = 'GGOSCzkHNWQpS3AymTTn6jbnKIq1';
   String messagesId = "";
