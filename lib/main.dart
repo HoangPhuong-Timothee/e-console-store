@@ -1,13 +1,16 @@
-import 'package:e_console_store/constants/constants.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:e_console_store/constants/constants.dart';
+import 'package:e_console_store/screens/sign_in/sign_in_screen.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -27,6 +30,6 @@ class MyApp extends StatelessWidget {
             bodyMedium: TextStyle(color: Colors.black54),
           ),
         ),
-        home: Text('Hello, World!!!'));
+        home: SignInScreen());
   }
 }
